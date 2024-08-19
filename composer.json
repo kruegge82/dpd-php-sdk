@@ -16,7 +16,7 @@
     "require-dev": {},
     "autoload": {
         "psr-4": {
-            "kruegge82\\dpd-php-sdk\\": "src"
+            "kruegge82\\": "src"
         }
     }
 }
