@@ -1,6 +1,6 @@
 {
     "name": "kruegge82/dpd-php-sdk",
-    "description": "Library to interface with the DPD web services",
+    "description": "Library to interface with the DPD web services germany",
     "type": "library",
     "license": "MIT",
     "keywords": ["dpd", "dpd webservice", "dpd api", "dpd soap"],
