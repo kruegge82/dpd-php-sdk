@@ -90,7 +90,7 @@ class DPDShipment{
 
     const TEST_SHIP_WSDL = 'https://public-ws-stage.dpd.com/services/ShipmentService/V4_4?wsdl';
     const SHIP_WSDL = 'https://public-ws.dpd.com/services/ShipmentService/V4_4?wsdl';
-    const SOAPHEADER_URL = 'https://dpd.com/common/service/types/Authentication/2.0';
+    const SOAPHEADER_URL = 'http://dpd.com/common/service/types/Authentication/2.0';
     const TRACKING_URL = 'https://tracking.dpd.de/parcelstatus?locale=:lang&query=:awb';
 
     /**
