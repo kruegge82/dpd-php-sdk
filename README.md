@@ -1,9 +1,9 @@
 # DPD Webservice
-[![Latest Stable Version](https://poser.pugx.org/mcs/dpd/v/stable)](https://packagist.org/packages/mcs/dpd) [![Total Downloads](https://poser.pugx.org/mcs/dpd/downloads)](https://packagist.org/packages/mcs/dpd) [![Latest Unstable Version](https://poser.pugx.org/mcs/dpd/v/unstable)](https://packagist.org/packages/mcs/dpd) [![License](https://poser.pugx.org/mcs/dpd/license)](https://packagist.org/packages/mcs/dpd)
+[![Latest Stable Version](https://poser.pugx.org/kruegge82/dpd-php-sdk/v/stable)](https://packagist.org/packages/kruegge82/dpd-php-sdk) [![Total Downloads](https://poser.pugx.org/kruegge82/dpd-php-sdk/downloads)](https://packagist.org/packages/kruegge82/dpd-php-sdk) [![Latest Unstable Version](https://poser.pugx.org/kruegge82/dpd-php-sdk/v/unstable)](https://packagist.org/packages/kruegge82/dpd-php-sdk) [![License](https://poser.pugx.org/kruegge82/dpd-php-sdk/license)](https://packagist.org/packages/kruegge82/dpd-php-sdk)
 
 Installation:
 ```bash
-$ composer require mcs/dpd
+$ composer require kruegge82/dpd-php-sdk
 ```
 
 Features:
@@ -13,8 +13,8 @@ Features:
 Basic shipment usage:
 
 ```php
-use MCS\DPDAuthorisation;
-use MCS\DPDShipment;
+use kruegge82\DPDAuthorisation;
+use kruegge82\DPDShipment;
 	
 try{
     // Second parameter to disable the wsdl cache defaults to true
@@ -117,8 +117,8 @@ try{
 Basic parcel status usage:
 
 ```php
-use MCS\DPDAuthorisation;
-use MCS\DPDParcelStatus;
+use kruegge82\DPDAuthorisation;
+use kruegge82\DPDParcelStatus;
 
 try{
 

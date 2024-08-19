@@ -1,4 +1,4 @@
-<?php namespace MCS;
+<?php namespace kruegge82;
 
 use Exception;
 use Soapclient;
