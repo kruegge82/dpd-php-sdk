@@ -1,5 +1,4 @@
 # DPD Webservice
-[![Latest Stable Version](https://poser.pugx.org/kruegge82/dpd-php-sdk/v/stable)](https://packagist.org/packages/kruegge82/dpd-php-sdk) [![Total Downloads](https://poser.pugx.org/kruegge82/dpd-php-sdk/downloads)](https://packagist.org/packages/kruegge82/dpd-php-sdk) [![Latest Unstable Version](https://poser.pugx.org/kruegge82/dpd-php-sdk/v/unstable)](https://packagist.org/packages/kruegge82/dpd-php-sdk) [![License](https://poser.pugx.org/kruegge82/dpd-php-sdk/license)](https://packagist.org/packages/kruegge82/dpd-php-sdk)
 
 Installation:
 ```bash
