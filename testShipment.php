@@ -1,22 +1,12 @@
-# DPD Webservice
-[![Latest Stable Version](https://poser.pugx.org/mcs/dpd/v/stable)](https://packagist.org/packages/mcs/dpd) [![Total Downloads](https://poser.pugx.org/mcs/dpd/downloads)](https://packagist.org/packages/mcs/dpd) [![Latest Unstable Version](https://poser.pugx.org/mcs/dpd/v/unstable)](https://packagist.org/packages/mcs/dpd) [![License](https://poser.pugx.org/mcs/dpd/license)](https://packagist.org/packages/mcs/dpd)
+<?php 
 
-Installation:
-```bash
-$ composer require mcs/dpd
-```
-
-Features:
- * Submit a shipment to the dpd webservice and retrieve it's label and tracking information
- * Retrieve parcel status information
-
-Basic shipment usage:
-
-```php
+require_once 'vendor/autoload.php';
+    
 use MCS\DPDAuthorisation;
 use MCS\DPDShipment;
-	
+
 try{
+    
     // Second parameter to disable the wsdl cache defaults to true
     $authorisation = new DPDAuthorisation([
         'staging' => true,
@@ -31,12 +21,15 @@ try{
     
     // Init the shipment with authorisation
     $shipment = new DPDShipment($authorisation);
+    
+    // Second parameter to disable the wsdl cache defaults to true
+    // $shipment = new DPDShipment($authorisation, false);
 
     // Set the language for the track&trace link
     $shipment->setTrackingLanguage('de_DE');
 
     // Enable saturday delivery
-    $shipment->setSaturdayDelivery(true);   
+    $shipment->setSaturdayDelivery(false);
 
     // Enable DPD B2C delivery method
     $shipment->setPredict([
@@ -53,7 +46,7 @@ try{
 
     // Set the printer options
     $shipment->setPrintOptions([
-        'printerLanguage' => 'PDF',
+        'printerLanguage' => 'PDF',  // ZPL
         'paperFormat' => 'A6',
     ]);     
 
@@ -63,7 +56,7 @@ try{
         'street' => 'Street 12',
         'country' => 'DE',
         'zipCode' => '12345',
-        'city' => 'BERLIN',
+        'city' => 'Berlin',
         'email' => 'contact@yourcompany.com',
         'phone' => '1234567645'
     ]);
@@ -74,9 +67,9 @@ try{
         'name2' => null,       
         'street' => 'Street',       
         'houseNo' => '12',    
-        'zipCode' => '98765',     
-        'city' => 'München',        
-        'country' => 'DE',           
+        'zipCode' => '98765',
+        'city' => 'München',
+        'country' => 'DE',
         'contact' => null,        
         'phone' => null,                 
         'email' => null,             
@@ -92,8 +85,8 @@ try{
     ]);
 
     $shipment->addParcel([
-        'weight' => 5000, // In gram
-        'height' => 20, // In centimeters
+        'weight' => 5000,
+        'height' => 20,
         'width' => 30,
         'length' => 20
     ]);
@@ -110,40 +103,7 @@ try{
 
 
 }catch(Exception $e){
-    echo $e->getMessage();		
+    dump($e->getMessage());		
 }
-```
 
-Basic parcel status usage:
-
-```php
-use MCS\DPDAuthorisation;
-use MCS\DPDParcelStatus;
-
-try{
-
-    // Authorize
-    // Be aware that this functionality doesn't work with test credentials
-    $authorisation = new DPDAuthorisation([
-        'staging' => false,
-        'delisId' => '<delisId>',
-        'password' => '<password>',
-        'messageLanguage' => 'de_DE',  // en_EN
-        'customerNumber' => '<customerNumber>'
-    ]);
-
-    // Init
-    $status = new DPDParcelStatus($authorisation);
-
-    // Retrieve the parcel's status by it's awb number
-    $parcelStatus = $status->getStatus('12345678987654');
-
-    echo '<pre>';
-    print_r($parcelStatus);
-    echo '</pre>';
-
-}catch(Exception $e){
-    echo $e->getMessage();		
-}
-```
 

@@ -1,0 +1,22 @@
+{
+    "name": "kruegge82/dpd-php-sdk",
+    "description": "Library to interface with the DPD web services",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["dpd", "dpd webservice", "dpd api", "dpd soap"],
+    "authors": [
+        {
+            "name": "Jahn N.",
+            "role": "developer"
+        }
+    ],
+    "require": {
+        "php": ">= 5.4"
+    },
+    "require-dev": {},
+    "autoload": {
+        "psr-4": {
+            "Jahn\\DPD\\": "src"
+        }
+    }
+}
