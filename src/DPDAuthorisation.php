@@ -23,10 +23,11 @@ class DPDAuthorisation{
 
     /**
      * Get an authorisationtoken from the DPD webservice
-     * @param array   $array              
+     * @param array   $array
      * @param boolean $wsdlCache, cache the wsdl
+     * @param string $token, existing token
      */
-    public function __construct($array, $wsdlCache = true)
+    public function __construct($array, $wsdlCache = true, $token='')
     {
         $this->authorisation = array_merge($this->authorisation, $array);
         $this->environment = [
@@ -37,31 +38,41 @@ class DPDAuthorisation{
         if($this->environment['wsdlCache']){
             $soapParams = [
                 'cache_wsdl' => WSDL_CACHE_BOTH
-            ];    
+            ];
         }
         else{
             $soapParams = [
                 'cache_wsdl' => WSDL_CACHE_NONE,
                 'exceptions' => true
-            ];    
+            ];
         }
-        
-        try{
-            
-            $client = new Soapclient($this->environment['loginWsdl'], $soapParams);
+        if($token=='') {
 
-            $auth = $client->getAuth([
-                'delisId' => $this->authorisation['delisId'],
-                'password' => $this->authorisation['password'],
-                'messageLanguage' => $this->authorisation['messageLanguage'],
-            ]);
+            try {
 
+                $client = new Soapclient($this->environment['loginWsdl'], $soapParams);
+
+                $auth = $client->getAuth([
+                    'delisId' => $this->authorisation['delisId'],
+                    'password' => $this->authorisation['password'],
+                    'messageLanguage' => $this->authorisation['messageLanguage'],
+                ]);
+
+                $auth->return->messageLanguage = $this->authorisation['messageLanguage'];
+                $this->authorisation['token'] = $auth->return;
+
+            } catch (SoapFault $e) {
+                throw new Exception($e->detail->authenticationFault->errorMessage);
+            }
+        } else {
+            $auth=new \stdClass();
+            $auth->return=new \stdClass();
             $auth->return->messageLanguage = $this->authorisation['messageLanguage'];
-            $this->authorisation['token'] = $auth->return;
-
+            $this->authorisation['token'] = new \stdClass();
+            $this->authorisation['token']->delisId = $this->authorisation['delisId'];
+            $this->authorisation['token']->customerUid = $this->authorisation['delisId'];
+            $this->authorisation['token']->messageLanguage = $this->authorisation['messageLanguage'];
+            $this->authorisation['token']->authToken = $token;
         }
-        catch (SoapFault $e){
-            throw new Exception($e->detail->authenticationFault->errorMessage);   
-        } 
-    }    
+    }
 }
